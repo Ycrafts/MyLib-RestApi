@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics
-from .models import Book, Category, Author, FavoriteList
-from .serializers import BookSerializer, AuthorSerializer, CategorySerializer, FavoriteListSerializer
+from .models import Book, Category, Author, Favorite
+from .serializers import BookSerializer, AuthorSerializer, CategorySerializer, FavoriteSerializer
 
 class BookList(generics.ListCreateAPIView):
     queryset = Book.objects.all()
@@ -27,11 +27,11 @@ class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     
-class FavoriteListList(generics.ListCreateAPIView):
-    queryset = FavoriteList.objects.all()
-    serializer_class = FavoriteListSerializer
+class FavoriteList(generics.ListCreateAPIView):
+    queryset = Favorite.objects.all()
+    serializer_class = FavoriteSerializer
     
-class FavoriteListDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = FavoriteList.objects.all()
-    serializer_class = FavoriteListSerializer
+class FavoriteDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Favorite.objects.all()
+    serializer_class = FavoriteSerializer
     

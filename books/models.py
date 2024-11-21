@@ -26,7 +26,7 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
-class FavoriteList(models.Model):
+class Favorite(models.Model):
     user = models.ForeignKey('accounts.CustomUser', on_delete=models.CASCADE)
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     
@@ -38,6 +38,6 @@ class FavoriteList(models.Model):
     
     def get_object(self, queryset=None):
         book_pk = self.kwargs.get('pk')
-        return FavoriteList.objects.get(book_id=book_pk, user=self.request.user)
+        return Favorite.objects.get(book_id=book_pk, user=self.request.user)
 
 

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Book,Category, FavoriteList, Author
+from .models import Book,Category, Favorite, Author
 
 class BookSerializer(serializers.ModelSerializer):
     class Meta:
@@ -32,11 +32,11 @@ class AuthorSerializer(serializers.ModelSerializer):
         )
         model = Author
         
-class FavoriteListSerializer(serializers.ModelSerializer):
+class FavoriteSerializer(serializers.ModelSerializer):
     class Meta:
         fields = (
             "id",
             "user",
             "book",
         )
-        model = FavoriteList
+        model = Favorite
