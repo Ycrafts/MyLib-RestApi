@@ -22,6 +22,7 @@ class Book(models.Model):
     coverImage = models.ImageField(upload_to='covers/')
     category = models.ForeignKey(Category, on_delete=models.PROTECT)
     download_count = models.IntegerField(default=0)
+    
 
     def __str__(self):
         return self.title
@@ -40,4 +41,4 @@ class Favorite(models.Model):
         book_pk = self.kwargs.get('pk')
         return Favorite.objects.get(book_id=book_pk, user=self.request.user)
 
-
+    

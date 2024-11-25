@@ -49,6 +49,9 @@ INSTALLED_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "dj_rest_auth.registration", 
+    "django_extensions",
+    "drf_spectacular",
+    
     #local
     "accounts.apps.AccountsConfig",
     "books.apps.BooksConfig",
@@ -163,7 +166,9 @@ REST_FRAMEWORK = { # new
     "DEFAULT_AUTHENTICATION_CLASSES" : [
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.TokenAuthentication",
-    ]
+    ],
+    
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema"
 }
 
 CORS_ORIGIN_WHITELIST = (
@@ -172,3 +177,10 @@ CORS_ORIGIN_WHITELIST = (
 )
 
 CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"]
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Book Shelf API Project",
+    "DESCRIPTION": "A books shelf project made with drf",
+    "VERSION": "1.0.0",
+
+ }
