@@ -1,5 +1,5 @@
 from pathlib import Path
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
 from dotenv import load_dotenv
 import os
@@ -12,8 +12,9 @@ load_dotenv(BASE_DIR/ '.env')
 
 class Command(BaseCommand):
     help = 'Creates a superuser.'
-
+    
     def handle(self, *args, **options):
+        User = get_user_model()
         if not User.objects.filter(username='SUPERUSER_USERNAME').exists():
             User.objects.create_superuser(
                 username = os.getenv('SUPERUSER_USERNAME'),
