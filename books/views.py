@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework import generics
-from .permissions import IsAdminUserForCreate
+from .permissions import IsAdminUserForCreate, IsAuthenticatedUserForCreate
 from rest_framework import viewsets
 from .models import Book, Category, Author, Favorite
 from .serializers import BookSerializer, AuthorSerializer, CategorySerializer, FavoriteSerializer
@@ -99,13 +99,16 @@ class CategoryViewSet(viewsets.ModelViewSet):
 class FavoriteViewSet(viewsets.ModelViewSet):
     queryset = Favorite.objects.all()
     serializer_class = FavoriteSerializer
-    permission_classes = [IsAdminUserForCreate]
+    permission_classes = [IsAuthenticatedUserForCreate]
     
     def get_queryset(self):
         if self.request.user.is_authenticated:
             return Favorite.objects.filter(user=self.request.user)
         return Favorite.objects.none()
     
+    def perform_create(self, serializer):
+        # Automatically associate the favorite with the current user
+        serializer.save(user=self.request.user)
     
 # class BookList(generics.ListCreateAPIView):
 #     queryset = Book.objects.all()

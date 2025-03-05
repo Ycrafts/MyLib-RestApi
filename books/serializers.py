@@ -40,3 +40,5 @@ class FavoriteSerializer(serializers.ModelSerializer):
             "book",
         )
         model = Favorite
+        
+    
