@@ -106,9 +106,6 @@ WSGI_APPLICATION = "MylibApiProj.wsgi.application"
 DATABASES = {
     'default': dj_database_url.parse(os.environ.get('DATABASE_URL'), conn_max_age=600),
 }
-
-
-
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
